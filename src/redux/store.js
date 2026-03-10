@@ -4,8 +4,9 @@ import productReducer from "./productSlice"
 
 const store = configureStore({ // isto za sam configure dajemo ime constante kao ime file, zato je obicno ime store, zato sto je u funkcija configureStore
     reducer: { // ovde smo za reducer naveli ime iz Slice file (product) kao key i value ceo reducer iz SLice koliko god da sadrzi stateova
-        product: productReducer
+        product: productReducer  // key = product, value = productReducer 
+        // (productReducer) = productSlice.reducer   
     }
-});
+}); 
 
 export default store;

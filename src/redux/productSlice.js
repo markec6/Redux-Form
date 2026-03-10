@@ -6,7 +6,8 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     myName: "", // na primer state za neko prazno polje (nesto na klik)
     isActive: true, // isto neki jednostavan state za menjanje stanja na klik
-    buys: []  // na primer neki array, pa dodavanje/brisanje podataka unutra 
+    allProducts: [],  // na primer neki array, pa dodavanje/brisanje proizvoda
+    cart: []
 }
 
 const productSlice = createSlice({ // obicno ime contanti za sam SLice damo po imenu file
@@ -22,11 +23,17 @@ const productSlice = createSlice({ // obicno ime contanti za sam SLice damo po i
             // da se na klik svaki put menja stanje od trenutnog 
             // zbog toga nam ovde ne treba action jer ga direktno ovako menjamo
         },
-        addBuys(state, action) {
-            state.buys.push(action.payload) // na primer push bas za dodavanje na array
+        setallProducts(state, action) {
+            state.allProducts = action.payload // na primer push bas za dodavanje na array
+        },
+        setCart(state, action) {
+            state.cart.push(action.payload)
         }
     }
 })
 
-export const {ChangeName, setisActive} = productSlice.actions; // ovako exportujemo te nase reducere, i kazemo da je to zapravo ceo nas Slice.actions odnosno sve te promene statova koje smo definisali-taime smo exportovali sve stateove
-export default productSlice.reducer; // klasican export za config
+export const {ChangeName, setisActive, setallProducts, setCart} = productSlice.actions; // ovako exportujemo te nase reducere, i kazemo da je to zapravo ceo nas Slice.actions odnosno sve te promene statova koje smo definisali-taime smo exportovali sve stateove
+export default productSlice.reducer; // klasican export reducer funkcije u config 
+
+// ako dodajemo novi array i menjamo ceo state === state.'zeljeni array' = action.payload
+// ako dodajemo nesto novo na vec postojeci array === state.'zeljeni array'.push(action.payload)
