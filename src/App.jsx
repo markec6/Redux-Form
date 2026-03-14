@@ -5,6 +5,8 @@
 import { Outlet } from 'react-router-dom'
  // ovde importujemo sve actione iz productSlice koje cemo da koristimo 
 
+ import Navigation from './components/Navigation'
+
 function App() {
 
    const myName = useSelector((state) => state.product.myName) // ovo product je key iz store.js, znaci uvek je state.key.'naziv statea'
@@ -21,10 +23,11 @@ function App() {
 
   return (
    <div className="container mx-auto">
+    <Navigation/>
       <div className='flex justify-between'>
         <button onClick={setName} className="py-[20px] px-[54px] bg-amber-400 justify-center">click here</button>
         <div>
-            {!isActive ? <p>{myName}</p> : <p>prazno</p>}
+            {isActive ? <p>{myName}</p> : <p>prazno</p>}
         </div>
         <span>{cart.length}</span>
      </div>

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import productService from '../services/productService'
 import { useDispatch, useSelector } from 'react-redux'
-import { setallProducts, setisActive, setCart} from '../redux/productSlice'
+import { setallProducts, setCart, setisLoading} from '../redux/productSlice'
 
 function ShowProducts() {
     const allProducts = useSelector((state) => state.product.allProducts)
-    const isActive = useSelector((state) => state.product.isActive)
+    const isLoading = useSelector((state) => state.product.isLoading)
     const cart = useSelector((state) => state.product.cart)
     const dispatch = useDispatch()
 
@@ -14,7 +14,7 @@ function ShowProducts() {
         .then((res) => {
             console.log(res.data.products)
             dispatch(setallProducts(res.data.products)) // ubacujemo elemente u allProducts state
-            dispatch(setisActive(false))
+            dispatch(setisLoading(false))
         })
         .catch((err) => console.log(err))
 }, [])
@@ -26,7 +26,7 @@ function AddtoCart(card) { // ovde prihvatamo argument iz onClicka
 
   return (
     <div className=' flex flex-col md:flex-row flex-wrap justify-between gap-[32px]'>
-        {isActive ? (allProducts?.map((card, index) => {
+        {!isLoading ? (allProducts?.map((card, index) => {
             return <div className='w-[30%] flex-none' key={index}>
                         <img className='w-[100%] object-cover' src={card.thumbnail}></img>
                         <div className='flex justify-between'>

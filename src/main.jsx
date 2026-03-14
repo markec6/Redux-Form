@@ -7,6 +7,7 @@ import store from '../src/redux/store.js'
 import { createBrowserRouter } from 'react-router-dom'
 import { RouterProvider } from 'react-router'
 import HomePage from './Pages/HomePage.jsx'
+import RegisterPage from './Pages/RegisterPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       children: [{
         path: '/',
         element: <HomePage/>,
+      },
+      {
+        path: '/register',
+        element: <RegisterPage/>
       }
     ]
   }
